@@ -31,10 +31,10 @@ componentDidMount() {
       body: JSON.stringify(data),
     })
     .then(responce => responce.json())
-  //   .then(data => {
-  //   const todos = [...this.state.todos, data];
-  //   this.setState({todos: todos});
-  // })
+    .then(data => {
+    const todos = [...this.state.todos, data];
+    this.setState({todos: todos});
+  })
   }
 
   removeTodo(id) {
@@ -42,20 +42,31 @@ componentDidMount() {
         method: 'DELETE',
       })
       .then(responce => responce)
-      .then(responce => console.log(responce))
+      .then(data => {
+        const todos = [...this.state.todos];
+        const index = todos.findIndex(todo => todo.id === id)
+        todos.splice(index,1);
+        this.setState({todos})
+      })
       .catch(error => console.log('Error:', error))
     }
 
     editTodo(data, id){
+      if(data.checked === false){
+        data.checked = true;
+        // let str = data.title;
+        // var result = str.strike();
+        // console.log(result);
+        // document.querySelector("todo-title").innerHTML = result;
+      }else if(data.checked === true){
+        data.checked = false;
+      }
       fetch(`api/v1/${id}/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          title: data,
-          checked: true,
-        })
+        body: JSON.stringify(data)
       })
       .then(response => response)
       .then(responce => console.log(responce))

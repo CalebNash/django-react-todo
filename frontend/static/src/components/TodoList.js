@@ -5,7 +5,7 @@ function TodoItem(props){
   return(
     <div className='list-group'>
       <div className='list-group-item'>
-        <input className='toggle done-todo' type='checkbox' onClick={() => props.editTodo(props.todo.title, props.todo.id)}/>
+        <input className='toggle done-todo' type='checkbox' onClick={() => props.editTodo(props.todo, props.todo.id)}/>
         <p className='todo-title'>{props.todo.title}</p>
         <button className="btn delete"type="button" onClick={() => props.removeTodo(props.todo.id)}><i id="orderButton" className="fas fa-times"></i></button>
       </div>
