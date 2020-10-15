@@ -1,3 +1,17 @@
 .container {
-  align-items: center;
+  justify-content: center;
+}
+
+.todo-title {
+  display: inline;
+  margin-left: 20px;
+
+}
+
+.name-of-project {
+  font-size: 40px;
+}
+
+.done-todo {
+  border-radius: 50%;
 }
