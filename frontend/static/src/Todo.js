@@ -54,10 +54,6 @@ componentDidMount() {
     editTodo(data, id){
       if(data.checked === false){
         data.checked = true;
-        // let str = data.title;
-        // var result = str.strike();
-        // console.log(result);
-        // document.querySelector("todo-title").innerHTML = result;
       }else if(data.checked === true){
         data.checked = false;
       }
@@ -68,7 +64,7 @@ componentDidMount() {
         },
         body: JSON.stringify(data)
       })
-      .then(response => response)
+      .then(response => response.json())
       .then(responce => console.log(responce))
       .catch(error => console.log('Error:', error));
   }
